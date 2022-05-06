@@ -6,16 +6,15 @@ import datetime
 # Dictionary Variables.............
 
 
-swimmers = {'Mgmg': {'Name': ['Mgmg'], 'Age': ['18'], 'Gender': ['male'] ,'Status' : ['active'],'Event':[None],'Time':[None],"Meet":[None]}}
+swimmers = {'Mgmg': {'Name': ['Mgmg'], 'Age': ['18'], 'Gender': ['male'] ,'Status' : ['active'],'Event':[],'Time':[],"Meet":[]}}
 
 
 
-record_swimmers_temp ={'Mgmg': {'Name': ['Mgmg'], 'Age': ['18'], 'Gender': ['male'] ,'Status' : ['active'],'Event':[],'Time':[],"Meet":[],'Post_Status':'Unposted'}}
+record_swimmers_temp ={'Mgmg': {'Name': ['Mgmg'], 'Age': ['18'], 'Gender': ['male'] ,'Status' : ['active'],'Event':['Freestyle'],'Time':[3],"Meet":["Compition"],'Post_Status':['unposted']}}
 
 
-record_swimmer_real = {'Mgmg': {'Name': ['Mgmg'], 'Age': ['18'], 'Gender': ['male'] ,'Status' : ['active'],'Event':[],'Time':[],"Meet":[],'Post_Status':'posted'}}
-
-record_swimmer_real_table= {'Name':[],"Age":[],"Gender":[],"Status":[],"Event":[],"Time":[],"Meet":[]}
+record_swimmers_real = {}
+# record_swimmers_real_table= {'Name':[],"Age":[],"Gender":[],"Status":[],"Event":[],"Time":[],"Meet":[]}
 
 
 #register_status
@@ -60,6 +59,69 @@ def check_gender(check_reg_gender):
         return False
 
 
+# check register swimmers
+def registered_swimmers():
+    register_swimmers_table={'Name':[],"Age":[],"Gender":[],"Status":[],"Event":[],"Time":[],"Meet":[]}
+    for x in swimmers.values():
+        
+        for a in x['Name']:
+            register_swimmers_table['Name'].append(a)
+
+        for a in x['Age']:
+            register_swimmers_table['Age'].append(a)
+
+        for a in x['Gender']:
+            register_swimmers_table['Gender'].append(a)
+
+        for a in x['Status']:
+            register_swimmers_table['Status'].append(a)
+
+        for a in x['Event']:
+            register_swimmers_table['Event'].append(a)
+                    
+        for a in x['Time']:
+            register_swimmers_table['Time'].append(a)
+                    
+        for a in x['Meet']:
+            register_swimmers_table['Meet'].append(a)
+                
+    print("\n\n\n"+ tabulate(register_swimmers_table, headers='keys'))            
+    main_program = True   
+
+# check recorded swimmers
+def recorded_swimmers():
+    record_swimmers_temp_table ={'Name':[],"Age":[],"Gender":[],"Status":[],"Event":[],"Time":[],"Meet":[],'Post_Status':[]}
+    for temp_swimmer in record_swimmers_temp.values():
+
+        for b in temp_swimmer['Name']:
+            record_swimmers_temp_table['Name'].append(b)
+
+        for b in temp_swimmer['Age']:
+            record_swimmers_temp_table['Age'].append(b)
+
+        for b in temp_swimmer['Gender']:
+            record_swimmers_temp_table['Gender'].append(b)
+
+        for b in temp_swimmer['Status']:
+            record_swimmers_temp_table['Status'].append(b)
+
+        for b in temp_swimmer['Event']:
+            record_swimmers_temp_table['Event'].append(b)
+                    
+        for b in temp_swimmer['Time']:
+            record_swimmers_temp_table['Time'].append(b)
+                    
+        for b in temp_swimmer['Meet']:
+            record_swimmers_temp_table['Meet'].append(b)
+                        
+        for b in temp_swimmer['Post_Status']:
+            record_swimmers_temp_table['Post_Status'].append(b)
+                
+
+    print("\n\n\n"+ tabulate(record_swimmers_temp_table, headers='keys'))            
+    main_program = True    
+
+
 #Main Program.........
 
 #For Registering.....................
@@ -69,6 +131,10 @@ while main_program == True:
     user_choice = input("\n\n\nFor register press 1\nFor record swimmer time press 2\nFor search individual press 3\nTo display unposted press 4\nTo execute program press 5\nEnter Your option:")
     if user_choice == '5':
         main_program = False
+    if user_choice == 'apple':        
+       registered_swimmers()
+    if user_choice == 'banana':        
+       recorded_swimmers()       
     if user_choice == '1':
 
         input_loop = True
@@ -126,36 +192,9 @@ while main_program == True:
 
 
                 print("Register Successful and now active")
-                print(swimmers)
+
                 # main_program = True
-        register_swimmers_table={'Name':[],"Age":[],"Gender":[],"Status":[],"Event":[],"Time":[],"Meet":[]}
-        for x in swimmers.values():
-        
-            for a in x['Name']:
-                register_swimmers_table['Name'].append(a)
-
-            for a in x['Age']:
-                register_swimmers_table['Age'].append(a)
-
-            for a in x['Gender']:
-                register_swimmers_table['Gender'].append(a)
-
-            for a in x['Status']:
-                register_swimmers_table['Status'].append(a)
-
-            for a in x['Event']:
-                register_swimmers_table['Event'].append(a)
-                    
-            for a in x['Time']:
-                register_swimmers_table['Time'].append(a)
-                    
-            for a in x['Meet']:
-                register_swimmers_table['Meet'].append(a)
-                
-
-        print(tabulate(register_swimmers_table, headers='keys'))            
-        main_program = True
-
+        registered_swimmers()
 
 #...........................Record Swimmers..........................
     elif user_choice == '2':
@@ -195,67 +234,37 @@ while main_program == True:
             if 1 == 1:
 
     #......................................Check Already Record and Register swimmer............................            
-                if record_name in list(swimmers.keys()) and record_name in list(record_swimmer_real.keys()):
-                    record_swimmers_temp[record_name]['Name'].append(record_swimmer_real[record_name]['Name'][0])
-                    record_swimmers_temp[record_name]['Age'].append(record_swimmer_real[record_name]['Age'][0])
-                    record_swimmers_temp[record_name]['Gender'].append(record_swimmer_real[record_name]['Gender'][0])
-                    record_swimmers_temp[record_name]['Status'].append(record_swimmer_real[record_name]['Status'][0])
+                if record_name in list(swimmers.keys()) and record_name in list(record_swimmers_temp.keys()):
+                    record_swimmers_temp[record_name]['Name'].append(record_swimmers_temp[record_name]['Name'][0])
+                    record_swimmers_temp[record_name]['Age'].append(record_swimmers_temp[record_name]['Age'][0])
+                    record_swimmers_temp[record_name]['Gender'].append(record_swimmers_temp[record_name]['Gender'][0])
+                    record_swimmers_temp[record_name]['Status'].append(record_swimmers_temp[record_name]['Status'][0])
                     record_swimmers_temp[record_name]['Event'].append(record_event_type_detail)
                     record_swimmers_temp[record_name]['Time'].append(record_time)
                     record_swimmers_temp[record_name]['Meet'].append(record_meet)
-                    record_swimmers_temp[record_name]['Post_Status'].append([post_status_false])
+                    record_swimmers_temp[record_name]['Post_Status'].append(post_status_false)
                 
     #......................................Check Register swimmer but not Record............................  
-                elif record_name in list(swimmers.keys()) and record_name not in list(record_swimmer_real.keys()):
-                    #  swimmers[record_name]['Event'].append(record_event_type_detail)
-                    #  swimmers[record_name]['Time'].append(record_time)
-                    #  swimmers[record_name]['Meet'].append(record_meet)
+                elif record_name in list(swimmers.keys()) and record_name not in list(record_swimmers_temp.keys()):
                     record_swimmers_temp[record_name]={}
                     record_swimmers_temp[record_name]['Name']=[record_name]
-                    record_swimmers_temp[record_name]['Age']=[swimmers[record_name]['Age']]
-                    record_swimmers_temp[record_name]['Gender']=[swimmers[record_name]['Gender']]
-                    record_swimmers_temp[record_name]['Status']=[swimmers[record_name]['Status']]
-                    record_swimmers_temp[record_name]['Event'].append(record_event_type_detail)
-                    record_swimmers_temp[record_name]['Time'].append(record_time)
-                    record_swimmers_temp[record_name]['Meet'].append(record_meet)
+                    record_swimmers_temp[record_name]['Age']=[swimmers[record_name]['Age'][0]]
+                    record_swimmers_temp[record_name]['Gender']=[swimmers[record_name]['Gender'][0]]
+                    record_swimmers_temp[record_name]['Status']=[swimmers[record_name]['Status'][0]]
+                    record_swimmers_temp[record_name]['Event']=[record_event_type_detail]
+                    record_swimmers_temp[record_name]['Time']=[record_time]
+                    record_swimmers_temp[record_name]['Meet']=[record_meet]
                     record_swimmers_temp[record_name]['Post_Status']=[post_status_false]
 
-                record_swimmers_temp_table ={'Name':[],"Age":[],"Gender":[],"Status":[],"Event":[],"Time":[],"Meet":[],'Post_Status':[]}
 
-                for x in record_swimmers_temp.values():
-
-                    for a in x['Name']:
-                        record_swimmers_temp['Name'].append(a)
-
-                    for a in x['Age']:
-                        record_swimmers_temp['Age'].append(a)
-
-                    for a in x['Gender']:
-                        record_swimmers_temp['Gender'].append(a)
-
-                    for a in x['Status']:
-                        record_swimmers_temp['Status'].append(a)
-
-                    for a in x['Event']:
-                        record_swimmers_temp['Event'].append(a)
-                    
-                    for a in x['Time']:
-                        record_swimmers_temp['Time'].append(a)
-                    
-                    for a in x['Meet']:
-                        record_swimmers_temp['Meet'].append(a)
-                        
-                    for a in x['Post_Status']:
-                        record_swimmers_temp['Post_Status'].append(a)
-                
-
-                print(tabulate(record_swimmers_temp_table, headers='keys'))            
-                main_program = True
+                recorded_swimmers()
                 
 
         else:
             print("no user found")
             main_program = True
+
+# ....................................Total Swimmer Detail.................................            
     
 
 
