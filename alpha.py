@@ -119,7 +119,7 @@ def recorded_swimmers():
                 
 
     print("\n\n\n"+ tabulate(record_swimmers_temp_table, headers='keys'))            
-    main_program = True    
+    # main_program = True    
 
 
 #Main Program.........
@@ -258,6 +258,13 @@ while main_program == True:
 
 
                 recorded_swimmers()
+
+                post_swimmers=input("Do you want to post all the unposted data? Yes/No: ")
+                if post_swimmers == 'Yes':
+                    
+                    main_program = True
+
+                    
                 
 
         else:
@@ -265,6 +272,6 @@ while main_program == True:
             main_program = True
 
 # ....................................Total Swimmer Detail.................................            
-    
+
 
 

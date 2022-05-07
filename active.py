@@ -47,10 +47,6 @@ def check_gender(check_reg_gender):
 
 main_program = True
 while main_program == True:
-
-   
-
-
     user_choice = input("\n\n\nFor register press 1\nFor record swimmer time press 2\nFor search individual press 3\nTo display unposted press 4\nTo execute program press 5\nEnter Your option:")
     if user_choice == '5':
         main_program = False
